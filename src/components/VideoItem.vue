@@ -18,7 +18,9 @@
       <h3 class="info__title">{{ title }}</h3>
 
       <time class="info__duration">{{ duration }}</time>
-      <button class="info__like-button">like</button>
+      <button v-on:click="like = !like" class="info__like-button">
+        {{ like ? 'unlike' : 'like'}}
+      </button>
     </div>
   </article>
 </template>
@@ -33,6 +35,11 @@ export default {
     preview: String,
     duration: String,
   },
+  data() {
+    return ({
+      like: false,
+    })
+  }
 }
 </script>
 
@@ -91,6 +98,7 @@ export default {
   justify-self: start;
   align-self: start;
   margin: 0;
+  text-align: start;
 }
 .info__duration {
   grid-area: duration;

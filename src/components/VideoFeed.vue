@@ -63,7 +63,7 @@ export default {
 .videoList {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 30px 20px;
+  grid-gap: 50px 20px;
   max-width: 1200px;
   margin: 0 auto;
   list-style: none;

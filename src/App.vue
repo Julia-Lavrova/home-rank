@@ -3,7 +3,8 @@
     <header>
       <Logo />
     </header>
-    <VideoFeed msg="Welcome to Your Vue.js App"/>
+
+    <VideoFeed />
   </div>
 </template>
 
