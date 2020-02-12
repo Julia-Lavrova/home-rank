@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import VideoFeed from './components/VideoFeed.vue'
-import Logo from './components/icons/Logo.vue'
+import VideoFeed from "./components/VideoFeed.vue";
+import Logo from "./components/icons/Logo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     VideoFeed,
-    Logo,
+    Logo
   }
-}
+};
 </script>
 
 <style>

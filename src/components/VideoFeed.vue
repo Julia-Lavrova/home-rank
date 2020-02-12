@@ -20,23 +20,23 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
-import VideoItem from './VideoItem.vue';
-import Stub from './Stub';
+import VideoItem from "./VideoItem.vue";
+import Stub from "./Stub";
 
 export default {
-  name: 'VideoFeed',
+  name: "VideoFeed",
   components: {
     VideoItem,
-    Stub,
+    Stub
   },
   data() {
-    return ({
+    return {
       videos: [],
       error: null,
-      loading: true,
-    })
+      loading: true
+    };
   },
   mounted() {
     this.loadVideos();
@@ -46,17 +46,19 @@ export default {
       this.loading = true;
 
       try {
-        const { data } = await axios.get('https://fwfg.com/api/contents?category_id=23751');
+        const { data } = await axios.get(
+          "https://fwfg.com/api/contents?category_id=23751"
+        );
 
         this.videos = data.sort((a, b) => b.position - a.position);
         this.loading = false;
-      } catch(err) {
+      } catch (err) {
         window.alert(err);
         this.loading = false;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

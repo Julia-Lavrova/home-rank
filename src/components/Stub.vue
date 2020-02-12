@@ -6,21 +6,21 @@
       <div class="duration" />
       <div class="title" />
 
-      <div class="like-button"/>
+      <div class="like-button" />
     </div>
   </article>
 </template>
 
 <script>
 export default {
-  name: 'Stub',
+  name: "Stub",
   props: {
     poster: String,
     name: String,
     likeCount: String,
-    preview: String,
-  },
-}
+    preview: String
+  }
+};
 </script>
 
 <style scoped>
@@ -47,8 +47,8 @@ export default {
 }
 
 .like-button {
-   width: 50px;
-   height: 30px;
-   background-color: #eee;
+  width: 50px;
+  height: 30px;
+  background-color: #eee;
 }
 </style>

@@ -5,13 +5,13 @@
         v-bind:src="poster"
         v-bind:alt="title"
         class="preview__image preview__image_poster"
-      >
+      />
 
       <img
         v-bind:src="preview"
         v-bind:alt="title"
         class="preview__image preview__image_gif"
-      >
+      />
     </div>
 
     <div class="info">
@@ -19,7 +19,7 @@
 
       <time class="info__duration">{{ duration }}</time>
       <button v-on:click="like = !like" class="info__like-button">
-        {{ like ? 'unlike' : 'like'}}
+        {{ like ? "unlike" : "like" }}
       </button>
     </div>
   </article>
@@ -27,20 +27,20 @@
 
 <script>
 export default {
-  name: 'VideoItem',
+  name: "VideoItem",
   props: {
     poster: String,
     title: String,
     likeCount: String,
     preview: String,
-    duration: String,
+    duration: String
   },
   data() {
-    return ({
-      like: false,
-    })
+    return {
+      like: false
+    };
   }
-}
+};
 </script>
 
 <style scoped>
