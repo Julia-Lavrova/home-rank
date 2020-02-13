@@ -11,8 +11,8 @@
       </li>
     </ul>
 
-    <ul class="videoList" v-if="loading">
-      <li v-for="item in 6" v-bind:key="item">
+    <ul class="video-list" v-if="loading">
+      <li v-for="item in 6" v-bind:key="item" class="video-list__item">
         <Stub />
       </li>
     </ul>

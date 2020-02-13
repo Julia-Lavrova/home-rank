@@ -14,12 +14,6 @@
 <script>
 export default {
   name: "Stub",
-  props: {
-    poster: String,
-    name: String,
-    likeCount: String,
-    preview: String
-  }
 };
 </script>
 
@@ -31,8 +25,8 @@ export default {
 .video__image {
   flex: 0 0 auto;
   width: 250px;
-  padding-bottom: 25.25%;
-  background-color: #6a725d;
+  padding-bottom: 57.25%;
+  background-color: #75796f;
 }
 
 .info {
@@ -43,8 +37,8 @@ export default {
     "title title"
     ". ."
     "duration like-button";
-  width: 100%;
-  padding: 0 20px 20px; 
+  height: 100px;  
+  padding: 10px;
 }
 
 .info__title {
@@ -53,7 +47,7 @@ export default {
   align-self: start;
   width: 80%;
   height: 25px;
-  background-color: #6a725d;
+  background-color: #75796f;
 }
 
 .info__duration {
@@ -62,7 +56,7 @@ export default {
   align-self: end;
   width: 60px;
   height: 25px;
-  background-color: #6a725d;
+  background-color: #75796f;
 }
 
 .info__like-button {
@@ -71,12 +65,24 @@ export default {
   align-self: end;
   width: 50px;
   height: 20px;
-  background-color: #6a725d;
+  background-color: #75796f;
 }
 
 @media (min-width: 1220px) {
   .video {
     display: flex;
+    width: auto;
+  }
+
+  .video__image {
+    flex: 0 0 auto;
+    padding-bottom: 25.25%;
+  }
+
+  .info {
+    width: 100%;
+    height: auto;
+    padding: 0 20px 20px;
   }
 }
 </style>

@@ -82,10 +82,6 @@ export default {
   opacity: 0;
 }
 
-.preview:hover .preview__image_gif {
-  opacity: 1;
-}
-
 .info {
   display: grid;
   grid-template-rows: 50% 25% 25%;
@@ -96,6 +92,7 @@ export default {
     "duration like-button";
   padding: 10px;
 }
+
 .info__title {
   grid-area: title;
   justify-self: start;
@@ -103,11 +100,13 @@ export default {
   margin: 0;
   text-align: start;
 }
+
 .info__duration {
   grid-area: duration;
   justify-self: start;
   align-self: end;
 }
+
 .info__like-button {
   grid-area: like-button;
   justify-self: end;
