@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "Stub",
+  name: 'Stub',
 };
 </script>
 
@@ -37,7 +37,7 @@ export default {
     "title title"
     ". ."
     "duration like-button";
-  height: 100px;  
+  height: 100px;
   padding: 10px;
 }
 

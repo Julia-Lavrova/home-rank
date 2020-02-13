@@ -2,6 +2,7 @@
   <article class="video">
     <div class="preview">
       <img
+        v-if="Boolean(poster)"
         v-bind:src="poster"
         v-bind:alt="title"
         class="preview__image preview__image_poster"
@@ -9,7 +10,7 @@
       />
 
       <img
-        v-if="showPreview"
+        v-if="showPreview && Boolean(preview)"
         v-bind:src="preview"
         v-bind:alt="title"
         class="preview__image preview__image_gif"
@@ -30,24 +31,27 @@
 
 <script>
 export default {
-  name: "VideoItem",
+  name: 'VideoItem',
   props: {
     poster: String,
     title: String,
     preview: String,
-    duration: String
+    duration: String,
   },
   data() {
     return {
       like: false,
       showPreview: false,
     };
-  }
+  },
 };
 </script>
 
 <style scoped>
-@keyframes move_eye { from { opacity: 0; } to { opacity: 1; }  }
+@keyframes show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 .video {
   width: 250px;
@@ -57,6 +61,7 @@ export default {
   position: relative;
   width: 250px;
   padding-bottom: 57.25%;
+  background-color: #75796f;
 }
 
 .preview__image {

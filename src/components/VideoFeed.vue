@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="error">
+      {{ error }}
+    </div>
+
     <ul class="video-list" v-if="!loading">
       <li v-for="video in videos" v-bind:key="video.id" class="video-list__item">
         <VideoItem
@@ -20,22 +24,22 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
-import VideoItem from "./VideoItem.vue";
-import Stub from "./Stub";
+import VideoItem from './VideoItem.vue';
+import Stub from './Stub.vue';
 
 export default {
-  name: "VideoFeed",
+  name: 'VideoFeed',
   components: {
     VideoItem,
-    Stub
+    Stub,
   },
   data() {
     return {
       videos: [],
       error: null,
-      loading: true
+      loading: true,
     };
   },
   mounted() {
@@ -44,20 +48,24 @@ export default {
   methods: {
     async loadVideos() {
       this.loading = true;
+      this.error = null;
 
       try {
-        const { data } = await axios.get(
-          "https://fwfg.com/api/contents?category_id=23751"
+        const response = await axios.get(
+          'https://fwfg.com/api/contents?category_id=23751',
         );
 
-        this.videos = data.sort((a, b) => b.position - a.position);
+        if (response && response.data) {
+          this.videos = response.data.sort((a, b) => b.position - a.position);
+        }
+
         this.loading = false;
       } catch (err) {
-        window.alert(err);
+        this.error = err;
         this.loading = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
