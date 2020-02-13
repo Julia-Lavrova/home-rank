@@ -5,12 +5,15 @@
         v-bind:src="poster"
         v-bind:alt="title"
         class="preview__image preview__image_poster"
+        v-on:mouseenter="showPreview = true"
       />
 
       <img
+        v-if="showPreview"
         v-bind:src="preview"
         v-bind:alt="title"
         class="preview__image preview__image_gif"
+        v-on:mouseleave="showPreview = false"
       />
     </div>
 
@@ -31,28 +34,29 @@ export default {
   props: {
     poster: String,
     title: String,
-    likeCount: String,
     preview: String,
     duration: String
   },
   data() {
     return {
-      like: false
+      like: false,
+      showPreview: false,
     };
   }
 };
 </script>
 
 <style scoped>
+@keyframes move_eye { from { opacity: 0; } to { opacity: 1; }  }
+
 .video {
-  display: flex;
+  width: 250px;
 }
 
 .preview {
   position: relative;
-  flex: 0 0 auto;
   width: 250px;
-  padding-bottom: 25.25%;
+  padding-bottom: 57.25%;
 }
 
 .preview__image {
@@ -70,8 +74,8 @@ export default {
 }
 
 .preview__image_gif {
-  opacity: 0;
-  transition: opacity 0.25s ease-out;
+  z-index: 1;
+  animation: show 0.5s ease;
 }
 
 .preview:hover .preview__image_poster {
@@ -90,8 +94,7 @@ export default {
     "title title"
     ". ."
     "duration like-button";
-  width: 100%;
-  padding: 0 20px 20px;
+  padding: 10px;
 }
 .info__title {
   grid-area: title;
@@ -109,5 +112,22 @@ export default {
   grid-area: like-button;
   justify-self: end;
   align-self: end;
+}
+
+@media (min-width: 1220px) {
+  .video {
+    display: flex;
+    width: auto;
+  }
+
+  .preview {
+    flex: 0 0 auto;
+    padding-bottom: 25.25%;
+  }
+
+  .info {
+    width: 100%;
+    padding: 0 20px 20px;
+  }
 }
 </style>

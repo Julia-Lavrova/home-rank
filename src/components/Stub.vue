@@ -1,12 +1,12 @@
 <template>
   <article class="video">
-    <div class="img" />
+    <div class="video__image" />
 
-    <div>
-      <div class="duration" />
-      <div class="title" />
+    <div class="info">
+      <div class="info__duration" />
+      <div class="info__title" />
 
-      <div class="like-button" />
+      <div class="info__like-button" />
     </div>
   </article>
 </template>
@@ -25,30 +25,58 @@ export default {
 
 <style scoped>
 .video {
-  display: flex;
+  width: 250px;
 }
 
-.img {
-  width: 266px;
-  height: 150px;
-  background-color: #eee;
+.video__image {
+  flex: 0 0 auto;
+  width: 250px;
+  padding-bottom: 25.25%;
+  background-color: #6a725d;
 }
 
-.title {
-  width: 100px;
-  height: 5px;
-  background-color: #eee;
+.info {
+  display: grid;
+  grid-template-rows: 50% 25% 25%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "title title"
+    ". ."
+    "duration like-button";
+  width: 100%;
+  padding: 0 20px 20px; 
 }
 
-.duration {
-  width: 30px;
-  height: 5px;
-  background-color: #eee;
+.info__title {
+  grid-area: title;
+  justify-self: start;
+  align-self: start;
+  width: 80%;
+  height: 25px;
+  background-color: #6a725d;
 }
 
-.like-button {
+.info__duration {
+  grid-area: duration;
+  justify-self: start;
+  align-self: end;
+  width: 60px;
+  height: 25px;
+  background-color: #6a725d;
+}
+
+.info__like-button {
+  grid-area: like-button;
+  justify-self: end;
+  align-self: end;
   width: 50px;
-  height: 30px;
-  background-color: #eee;
+  height: 20px;
+  background-color: #6a725d;
+}
+
+@media (min-width: 1220px) {
+  .video {
+    display: flex;
+  }
 }
 </style>

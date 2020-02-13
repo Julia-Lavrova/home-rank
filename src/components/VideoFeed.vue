@@ -1,11 +1,11 @@
 <template>
   <div>
-    <ul class="videoList" v-if="!loading">
-      <li v-for="video in videos" v-bind:key="video.id">
+    <ul class="video-list" v-if="!loading">
+      <li v-for="video in videos" v-bind:key="video.id" class="video-list__item">
         <VideoItem
           :title="video.title"
           :duration="video.duration"
-          :poster="video.main_poster"
+          :poster="video.main_poster_hybrid"
           :preview="video.gif_preview"
         />
       </li>
@@ -62,12 +62,35 @@ export default {
 </script>
 
 <style scoped>
-.videoList {
+.video-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 50px 20px;
-  max-width: 1200px;
   margin: 0 auto;
+  padding: 0;
   list-style: none;
+}
+
+.video-list__item {
+  justify-self: center;
+}
+
+@media (min-width: 660px) {
+  .video-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1220px) {
+  .video-list {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+
+  .video-list__item {
+    width: 550px;
+  }
 }
 </style>
