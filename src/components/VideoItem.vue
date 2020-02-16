@@ -3,18 +3,18 @@
     <div class="preview">
       <img
         v-if="Boolean(poster)"
-        v-bind:src="poster"
-        v-bind:alt="title"
+        :src="poster"
+        :alt="title"
         class="preview__image preview__image_poster"
-        v-on:mouseenter="showPreview = true"
+        @mouseenter="showPreview = true"
       />
 
       <img
         v-if="showPreview && Boolean(preview)"
-        v-bind:src="preview"
-        v-bind:alt="title"
+        :src="preview"
+        :alt="title"
         class="preview__image preview__image_gif"
-        v-on:mouseleave="showPreview = false"
+        @mouseleave="showPreview = false"
       />
     </div>
 
@@ -22,8 +22,12 @@
       <h3 class="info__title">{{ title }}</h3>
 
       <time class="info__duration">{{ duration }}</time>
-      <button v-on:click="like = !like" class="info__like-button">
-        {{ like ? "unlike" : "like" }}
+      <button
+        @click="handleVoteClick"
+        class="info__like-button"
+        :disabled="!canVote"
+      >
+        {{ `votes ${votes || ''}` }}
       </button>
     </div>
   </article>
@@ -33,24 +37,36 @@
 export default {
   name: 'VideoItem',
   props: {
+    id: Number,
     poster: String,
     title: String,
     preview: String,
     duration: String,
+    votes: Number,
+    canVote: Boolean,
+    onVoteClick: Function,
   },
   data() {
     return {
-      like: false,
       showPreview: false,
     };
+  },
+  methods: {
+    handleVoteClick() {
+      this.onVoteClick(this.id);
+    },
   },
 };
 </script>
 
 <style scoped>
 @keyframes show {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .video {
