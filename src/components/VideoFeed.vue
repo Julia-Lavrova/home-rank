@@ -15,6 +15,13 @@
       >
         reset all
       </button>
+
+      <button
+        class="votes_filter-button"
+        @click="handleFilterClick"
+      >
+        filter by votes
+      </button>
     </div>
 
     <ul class="video-list" v-if="!loading">
@@ -28,6 +35,7 @@
           :canVote="totalVotes < 50"
           :votes="votes[video.id] || 0"
           :onVoteClick="handleVoteClick"
+          :onResetVotesClick="handleResetVotesClick"
         />
       </li>
     </ul>
@@ -102,9 +110,9 @@ export default {
       });
     },
     checkSession() {
-      const lastSessionDay = window.localStorage.getItem('lastSessionDay');
+      const lastSessionDay = new Date(window.localStorage.getItem('lastSessionDay'));
 
-      if (!lastSessionDay || (lastSessionDay < new Date() && lastSessionDay.getDate() !== new Date().getDate)) {
+      if (!lastSessionDay || (lastSessionDay < new Date() && lastSessionDay.getDate() !== new Date().getDate())) {
         window.localStorage.setItem('lastSessionDay', new Date());
         window.localStorage.setItem(
           'votes',
@@ -125,11 +133,14 @@ export default {
 
       if (!this.votes[id]) {
         this.votes = { ...this.votes, [id]: 1 };
-        return;
+      } else {
+        this.votes = { ...this.votes, [id]: this.votes[id] + 1 };
       }
 
-      this.votes = { ...this.votes, [id]: this.votes[id] + 1 };
-
+      this.updateVotes();
+    },
+    handleResetVotesClick(id) {
+      this.votes = { ...this.votes, [id]: 0 };
       this.updateVotes();
     },
     handleResetClick() {
@@ -139,6 +150,9 @@ export default {
     },
     updateVotes() {
       window.localStorage.setItem('votes', JSON.stringify(this.votes));
+    },
+    handleFilterClick() {
+      this.sortList(this.videos);
     },
   },
 };
@@ -155,6 +169,10 @@ export default {
 
 .votes_reset-button {
   height: fit-content;
+}
+
+.votes_filter-button {
+  margin-left: 10px;
 }
 
 .video-list {
@@ -192,7 +210,6 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
   }
-
 
   .video-list__item {
     width: 550px;

@@ -22,10 +22,19 @@
       <h3 class="info__title">{{ title }}</h3>
 
       <time class="info__duration">{{ duration }}</time>
+
+      <button
+        @click="handleResetVotesClick"
+        :disabled="votes === 0"
+        class="info__reset-button"
+      >
+        reset votes
+      </button>
+
       <button
         @click="handleVoteClick"
-        class="info__like-button"
         :disabled="!canVote"
+        class="info__like-button"
       >
         {{ `votes ${votes || ''}` }}
       </button>
@@ -45,6 +54,7 @@ export default {
     votes: Number,
     canVote: Boolean,
     onVoteClick: Function,
+    onResetVotesClick: Function,
   },
   data() {
     return {
@@ -52,6 +62,9 @@ export default {
     };
   },
   methods: {
+    handleResetVotesClick() {
+      this.onResetVotesClick(this.id);
+    },
     handleVoteClick() {
       this.onVoteClick(this.id);
     },
@@ -106,11 +119,12 @@ export default {
 .info {
   display: grid;
   grid-template-rows: 50% 25% 25%;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "title title"
-    ". ."
-    "duration like-button";
+    "title title title"
+    ". . ."
+    "duration reset-button like-button";
+  min-height: 100px;
   padding: 10px;
 }
 
@@ -131,6 +145,12 @@ export default {
 .info__like-button {
   grid-area: like-button;
   justify-self: end;
+  align-self: end;
+}
+
+.info__reset-button {
+  grid-area: reset-button;
+  justify-self: center;
   align-self: end;
 }
 
